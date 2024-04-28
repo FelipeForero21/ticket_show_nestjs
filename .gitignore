@@ -60,4 +60,6 @@ docker-compose.yml
 
 # MySQL
 mysql/mysql.sock
+mysql
+
 
