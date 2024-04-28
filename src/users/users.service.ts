@@ -13,13 +13,13 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const { email } = createUserDto;
-// Check if the email is already in use in the database
-    const existingUser = await this.userRepository.findOne({ where: { email } });
+    const { identificationNumber } = createUserDto;
+// Check if the Identification Number is already in use in the database
+    const existingUser = await this.userRepository.findOne({ where: { identificationNumber } });
     if (existingUser) {
-      throw new ConflictException('The email is already in use');
+      throw new ConflictException('The Identification Number is already in use');
     }
-// If the email is not in use, create the new user
+// If the Identification Number is not in use, create the new user
 const newUser = this.userRepository.create(createUserDto);
     return await this.userRepository.save(newUser);
   }
