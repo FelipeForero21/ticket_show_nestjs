@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { GendersModule } from './genders/genders.module';
 
 @Module({
-  imports: [UsersModule, 
+  imports: [
     TypeOrmModule.forRoot({
       type:'mysql',
       host: 'localhost',
@@ -13,7 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: 'db_crud',
       autoLoadEntities: true,
       synchronize: true,
-    })],
+    }), UsersModule, GendersModule],
   controllers: [],
   providers: [],
 })

@@ -6,7 +6,7 @@ export declare class UsersController {
     constructor(usersService: UsersService);
     create(createUserDto: CreateUserDto): Promise<import("./entities/user.entity").User>;
     findAll(): Promise<import("./entities/user.entity").User[]>;
-    findOne(id: number): Promise<string>;
-    update(id: string, updateUserDto: UpdateUserDto): Promise<string>;
-    remove(id: string): Promise<string>;
+    findOne(id: number): Promise<import("./entities/user.entity").User>;
+    update(id: number, updateUserDto: UpdateUserDto): Promise<string>;
+    remove(id: number): Promise<import("typeorm").UpdateResult>;
 }

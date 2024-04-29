@@ -17,36 +17,48 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("./entities/user.entity");
 const typeorm_2 = require("typeorm");
+const gender_entity_1 = require("../genders/entities/gender.entity");
 let UsersService = class UsersService {
-    constructor(userRepository) {
+    constructor(userRepository, genderRepository) {
         this.userRepository = userRepository;
+        this.genderRepository = genderRepository;
     }
     async create(createUserDto) {
         const { identificationNumber } = createUserDto;
-        const existingUser = await this.userRepository.findOne({ where: { identificationNumber } });
+        const existingUser = await this.userRepository.findOne({
+            where: { identificationNumber },
+        });
         if (existingUser) {
             throw new common_1.ConflictException('The Identification Number is already in use');
         }
-        const newUser = this.userRepository.create(createUserDto);
+        const gender = await this.genderRepository.findOneBy({
+            gender: createUserDto.gender,
+        });
+        if (!gender) {
+            throw new common_1.BadRequestException('Gender not found');
+        }
+        const newUser = this.userRepository.create({ ...createUserDto, gender });
         return await this.userRepository.save(newUser);
     }
     async findAll() {
         return await this.userRepository.find();
     }
     async findOne(id) {
-        return `This action returns a #${id} user`;
+        return await this.userRepository.findOneBy({ id });
     }
     async update(id, updateUserDto) {
         return `This action updates a #${id} user`;
     }
     async remove(id) {
-        return `This action removes a #${id} user`;
+        return await this.userRepository.softDelete({ id });
     }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(gender_entity_1.Gender)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map
