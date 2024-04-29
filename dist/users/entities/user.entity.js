@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const typeorm_1 = require("typeorm");
+const rol_entity_1 = require("./rol.entity");
 let User = class User {
 };
 exports.User = User;
@@ -42,6 +43,14 @@ __decorate([
     (0, typeorm_1.DeleteDateColumn)(),
     __metadata("design:type", Date)
 ], User.prototype, "deletedAt", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], User.prototype, "rolId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => rol_entity_1.Rol, rol => rol.users),
+    __metadata("design:type", rol_entity_1.Rol)
+], User.prototype, "rol", void 0);
 exports.User = User = __decorate([
     (0, typeorm_1.Entity)()
 ], User);

@@ -1,4 +1,6 @@
-import { Column, DeleteDateColumn, Entity } from "typeorm";
+import { Column, DeleteDateColumn, Entity, ManyToOne } from "typeorm";
+import{Rol}from "./rol.entity"
+
 
 @Entity()
 export class User {
@@ -22,4 +24,12 @@ export class User {
 
     @DeleteDateColumn()
     deletedAt: Date;
+
+    @Column()
+    rolId: number;
+
+    @ManyToOne(()=> Rol, rol => rol.users)
+    rol:Rol;
 }
+
+

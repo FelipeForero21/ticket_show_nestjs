@@ -1,3 +1,4 @@
+import { Rol } from "./rol.entity";
 export declare class User {
     id: number;
     name: string;
@@ -6,4 +7,6 @@ export declare class User {
     password: string;
     gender: string;
     deletedAt: Date;
+    rolId: number;
+    rol: Rol;
 }

@@ -17,9 +17,9 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [users_module_1.UsersModule,
             typeorm_1.TypeOrmModule.forRoot({
-                type: 'mysql',
+                type: 'postgres',
                 host: 'localhost',
-                port: 3307,
+                port: 5432,
                 username: 'user_crud',
                 password: 'root',
                 database: 'db_crud',
