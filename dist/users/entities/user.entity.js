@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
+const gender_entity_1 = require("../../genders/entities/gender.entity");
 const typeorm_1 = require("typeorm");
 let User = class User {
 };
@@ -35,13 +36,15 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], User.prototype, "gender", void 0);
-__decorate([
     (0, typeorm_1.DeleteDateColumn)(),
     __metadata("design:type", Date)
 ], User.prototype, "deletedAt", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => gender_entity_1.Gender, (gender) => gender.id, {
+        eager: true
+    }),
+    __metadata("design:type", gender_entity_1.Gender)
+], User.prototype, "gender", void 0);
 exports.User = User = __decorate([
     (0, typeorm_1.Entity)()
 ], User);

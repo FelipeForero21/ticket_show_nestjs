@@ -10,12 +10,13 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const users_module_1 = require("./users/users.module");
 const typeorm_1 = require("@nestjs/typeorm");
+const genders_module_1 = require("./genders/genders.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [users_module_1.UsersModule,
+        imports: [
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'mysql',
                 host: 'localhost',
@@ -25,7 +26,8 @@ exports.AppModule = AppModule = __decorate([
                 database: 'db_crud',
                 autoLoadEntities: true,
                 synchronize: true,
-            })],
+            }), users_module_1.UsersModule, genders_module_1.GendersModule
+        ],
         controllers: [],
         providers: [],
     })

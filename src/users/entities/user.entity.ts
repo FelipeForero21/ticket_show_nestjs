@@ -1,4 +1,5 @@
-import { Column, DeleteDateColumn, Entity } from "typeorm";
+import { Gender } from "src/genders/entities/gender.entity";
+import { Column, DeleteDateColumn, Entity, ManyToOne } from "typeorm";
 
 @Entity()
 export class User {
@@ -17,9 +18,12 @@ export class User {
     @Column()
     password: string;
 
-    @Column()
-    gender: string;
-
     @DeleteDateColumn()
     deletedAt: Date;
+
+    @ManyToOne(() => Gender, (gender) => gender.id, {
+        eager: true
+    })
+    gender: Gender;
+    
 }
