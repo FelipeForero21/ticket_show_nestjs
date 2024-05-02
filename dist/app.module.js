@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const users_module_1 = require("./users/users.module");
 const typeorm_1 = require("@nestjs/typeorm");
-const genders_module_1 = require("./genders/genders.module");
+const users_db_module_1 = require("./users-db/users-db.module");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -26,7 +26,7 @@ exports.AppModule = AppModule = __decorate([
                 database: 'db_crud',
                 autoLoadEntities: true,
                 synchronize: true,
-            }), users_module_1.UsersModule, genders_module_1.GendersModule
+            }), users_db_module_1.UsersDbModule, auth_module_1.AuthModule
         ],
         controllers: [],
         providers: [],

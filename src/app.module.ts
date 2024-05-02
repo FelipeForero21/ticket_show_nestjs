@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
-import { UsersModule } from './users/users.module';
+// import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { GendersModule } from './genders/genders.module';
+// import { GendersModule } from './genders/genders.module';
+import { UsersDbModule } from './users-db/users-db.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -14,8 +16,11 @@ import { GendersModule } from './genders/genders.module';
       database: 'db_crud',
       autoLoadEntities: true,
       synchronize: true,
-    }), UsersModule, GendersModule],
+    }), UsersDbModule, AuthModule],
   controllers: [],
   providers: [],
 })
 export class AppModule {}
+// UsersModule, GendersModule,
+
+// "Registration aggregation, login, JWT generation, password encryption, and handling some errors.
