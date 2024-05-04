@@ -8,13 +8,13 @@ export class UsersDb {
     id: number;
 
 
-    @Column({nullable: false})
+    @Column()
     name: string;
-
-    @Column({unique: true})
+  
+    @Column({ unique: true, nullable: false })
     email: string;
-
-    @Column({nullable: false})
+    
+    @Column({ nullable: false, select: false })
     password: string;
 
     @Column({default: 'user'})
