@@ -22,5 +22,3 @@ import { AuthModule } from './auth/auth.module';
 })
 export class AppModule {}
 // UsersModule, GendersModule,
-
-// "Registration aggregation, login, JWT generation, password encryption, and handling some errors.

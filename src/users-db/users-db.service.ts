@@ -22,10 +22,12 @@ export class UsersDbService {
    return this.userDbRepository.findOneBy({email})}
 
 
-
-
-
-
+   findByEmailWithPassword(email: string) {
+    return this.userDbRepository.findOne({
+      where: { email },
+      select: ['id', 'name', 'email', 'password', 'rol'],
+    });
+  }
 
 
   findAll() {
