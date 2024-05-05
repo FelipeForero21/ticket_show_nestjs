@@ -1,10 +1,11 @@
 import { Column, DeleteDateColumn, Entity, ManyToOne } from "typeorm";
-import{Rol}from "./rol.entity"
+import { Rol } from "./rol.entity"
 
 
-@Entity()
+
+@Entity({ name: 'users' })
 export class User {
-    @Column({primary: true, generated: true})
+    @Column({ primary: true, generated: true })
     id: number;
 
     @Column()
@@ -12,7 +13,7 @@ export class User {
 
     @Column()
     identificationNumber: string;
-        
+
     @Column()
     email: string;
 
@@ -28,8 +29,8 @@ export class User {
     @Column()
     rolId: number;
 
-    @ManyToOne(()=> Rol, rol => rol.users)
-    rol:Rol;
+    @ManyToOne(() => Rol, rol => rol.users)
+    rol: Rol;
 }
 
 

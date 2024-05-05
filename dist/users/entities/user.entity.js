@@ -52,6 +52,6 @@ __decorate([
     __metadata("design:type", rol_entity_1.Rol)
 ], User.prototype, "rol", void 0);
 exports.User = User = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)({ name: 'users' })
 ], User);
 //# sourceMappingURL=user.entity.js.map
