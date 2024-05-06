@@ -15,6 +15,11 @@ export class UsersDbService {
 
   
   create(createUsersDbDto: CreateUsersDbDto) {
+    // const user : UsersDb ={
+    //   name:createUsersDbDto.name,
+    //   password:
+
+    // }
     return this.userDbRepository.save(createUsersDbDto)
   }
 
