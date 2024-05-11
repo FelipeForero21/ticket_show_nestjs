@@ -4,6 +4,7 @@ import { UpdateUsersDbDto } from './dto/update-users-db.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UsersDb } from './entities/users-db.entity';
 import { Repository } from 'typeorm';
+import { Rol } from './entities/rol.entity';
 
 @Injectable()
 export class UsersDbService {
@@ -15,11 +16,6 @@ export class UsersDbService {
 
   
   create(createUsersDbDto: CreateUsersDbDto) {
-    // const user : UsersDb ={
-    //   name:createUsersDbDto.name,
-    //   password:
-
-    // }
     return this.userDbRepository.save(createUsersDbDto)
   }
 
@@ -30,7 +26,8 @@ export class UsersDbService {
    findByEmailWithPassword(email: string) {
     return this.userDbRepository.findOne({
       where: { email },
-      select: ['id', 'name', 'email', 'password', 'rol'],
+      select: ['id', 'name', 'email', 'password'],
+      relations: { rol: true },
     });
   }
 

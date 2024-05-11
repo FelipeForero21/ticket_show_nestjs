@@ -4,7 +4,6 @@ import { Rol } from "./rol.entity"
 
 @Entity()
 export class UsersDb {
-
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -22,4 +21,7 @@ export class UsersDb {
 
     @ManyToOne(() => Rol, rol => rol.users)
     rol: Rol;
+
+    @Column({default: 2})
+    rolId: number;
 }

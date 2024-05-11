@@ -12,5 +12,4 @@ export class Rol {
 
     @OneToMany(() => UsersDb, user => user.rol)
     users: UsersDb[];
-
 }

@@ -9,8 +9,6 @@ export class UsersDbController {
 
   @Post()
   create(@Body() createUsersDbDto: CreateUsersDbDto) {
-    console.log("entra");
-    
     return this.usersDbService.create(createUsersDbDto);
   }
 

@@ -1,4 +1,5 @@
 import {
+  IsNumber,
     IsString,
   } from 'class-validator';
 
@@ -9,4 +10,6 @@ export class CreateUsersDbDto {
     password: string;
     @IsString()
     name?: string;
+    @IsNumber()
+    rolId?: number;
 }
