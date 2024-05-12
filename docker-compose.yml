@@ -1,16 +1,18 @@
 version: "3.8"
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: mysql_db
+  db:
+    image: postgres:11
+    container_name: postgres_db
     restart: always
+    expose:
+      - '5432'
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: db_crud
-      MYSQL_USER: user_crud
-      MYSQL_PASSWORD: root
+      POSTGRES_DB: db_crud
+      POSTGRES_USER: user_crud
+      POSTGRES_PASSWORD: root
+
     volumes:
-      - ./mysql:/var/lib/mysql
+      - '.db/data:/var/lib/postgresql/data'
     ports:
-      - "3307:3306"
+      - '5432:5432'
 
