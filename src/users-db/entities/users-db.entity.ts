@@ -22,6 +22,6 @@ export class UsersDb {
     @ManyToOne(() => Rol, rol => rol.users)
     rol: Rol;
 
-    @Column({default: 2})
+    @Column({ default: 2 })
     rolId: number;
 }

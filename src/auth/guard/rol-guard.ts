@@ -23,15 +23,11 @@ export class RolGuard implements CanActivate {
             const payload = await this.jwtService.verifyAsync(token, {
                 secret: jwtConstants.secret,
             });
-           
-           
-            if(payload.rol != 'admin'){
+
+
+            if (payload.rol != 'admin') {
                 throw new UnauthorizedException('Only administrator have access');
             }
-
-            console.log('payload',payload);
-           
-        
 
             request.user = payload;
 

@@ -3,12 +3,16 @@ import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.tdo';
 import { LoginDto } from './dto/login.dto';
 import { AuthGuard } from './guard/auth.guard';
+import { ApiCreatedResponse, ApiForbiddenResponse, ApiTags, ApiUnauthorizedResponse, ApiFoundResponse, ApiBadRequestResponse, ApiOkResponse } from '@nestjs/swagger';
 
+@ApiTags('Users')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) { }
 
   @Post('register')
+  @ApiCreatedResponse({description: 'The record has been successfully created'})
+  @ApiForbiddenResponse({description:'Forbidden.'})
   async register(@Res() res, @Body() registerDto: RegisterDto) {
     const response = await this.authService.register(registerDto);
     if (!response.success) {
@@ -19,7 +23,9 @@ export class AuthController {
   }
 
   @Post('login')
-  async login(@Res() res, @Body() loginDto: LoginDto) {
+  @ApiFoundResponse({description: 'OK'})
+  @ApiUnauthorizedResponse({description: 'Unauthorized'})
+  async login(@Res() res, @Body() loginDto: LoginDto): Promise<any> {
     const response = await this.authService.login(loginDto);
     if (!response.success) {
       return res.status(HttpStatus.BAD_REQUEST).send(response)
@@ -29,6 +35,8 @@ export class AuthController {
 
 
   @Get('profile')
+  @ApiOkResponse({description: 'OK'})
+  @ApiBadRequestResponse({description: 'Bad Request'})
   @UseGuards(AuthGuard)
   profile(
     @Request()
