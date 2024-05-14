@@ -4,9 +4,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 // import { GendersModule } from './genders/genders.module';
 import { UsersDbModule } from './users-db/users-db.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type:'postgres',
       host: 'localhost',
