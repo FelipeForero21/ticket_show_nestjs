@@ -4,7 +4,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {cors:true});
+  app.enableCors();
 
   const config = new DocumentBuilder()
   .setTitle('Auth')
@@ -14,6 +15,10 @@ async function bootstrap() {
   .build()
 
   const document = SwaggerModule.createDocument(app,config);
+  app.enableCors({
+    origin: 'http://localhost:5173', 
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  });
 
   SwaggerModule.setup('api', app, document);
   app.setGlobalPrefix("api/v1");
@@ -30,3 +35,4 @@ async function bootstrap() {
   await app.listen(3000);
 }
 bootstrap();
+

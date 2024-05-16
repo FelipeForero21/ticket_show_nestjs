@@ -9,7 +9,7 @@ export class CreateUsersDbDto {
     @IsString()
     password: string;
     @IsString()
-    name?: string;
+    username?: string;
     @IsNumber()
     rolId?: number;
 }

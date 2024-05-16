@@ -8,7 +8,7 @@ export class UsersDb {
     id: number;
 
     @Column()
-    name: string;
+    username: string;
 
     @Column({ unique: true, nullable: false })
     email: string;

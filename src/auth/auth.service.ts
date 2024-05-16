@@ -20,7 +20,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) { }
 
-  async register({ name, email, password }: RegisterDto) {
+  async register({ username, email, password }: RegisterDto) {
     try {
       const ROL_USER = 1
       const user = await this.usersDbService.findOneByEmail(email);
@@ -32,7 +32,7 @@ export class AuthService {
         }
       }
       await this.usersDbService.create({
-        name,
+        username,
         email,
         password: await bcryptjs.hash(password, 10),
         rolId: ROL_USER
@@ -42,7 +42,7 @@ export class AuthService {
         success: true,
         message: "user creaded successful",
         data: {
-          name,
+          username,
           email,
         },
       }
@@ -64,7 +64,7 @@ export class AuthService {
         throw new UnauthorizedException('invalid cridentials');
       }
 
-      const payload = { email: user.email, rol: user.rol.name };
+      const payload = { email: user.email, rol: user.rol.username };
       const token = await this.jwtService.signAsync(payload)
       return  { 
         success: true,

@@ -8,7 +8,7 @@ export class Rol {
     id: number;
 
     @Column()
-    name: string;
+    username: string;
 
     @OneToMany(() => UsersDb, user => user.rol)
     users: UsersDb[];
