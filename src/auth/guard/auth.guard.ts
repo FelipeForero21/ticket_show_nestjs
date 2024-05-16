@@ -6,19 +6,16 @@ import { JwtService } from "@nestjs/jwt";
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-constructor(
+  constructor(
 
-  private readonly jwtService: JwtService
-){
-  
-}
-  async canActivate(context: ExecutionContext):  Promise<boolean> {
+    private readonly jwtService: JwtService
+  ) {
+
+  }
+  async canActivate(context: ExecutionContext): Promise<boolean> {
 
     const request = context.switchToHttp().getRequest();
-    console.log(request.headers.authorization)  
     const token = this.extractTokenFromHeader(request);
-
-
 
     if (!token) {
       throw new UnauthorizedException();
@@ -32,13 +29,12 @@ constructor(
     } catch (error) {
       throw new UnauthorizedException();
     }
-
-
     return true
   }
 
   private extractTokenFromHeader(request: Request) {
     const [type, token] = request.headers.authorization?.split(" ") ?? [];
     return type === "Bearer" ? token : undefined;
-  }}
+  }
+}
 

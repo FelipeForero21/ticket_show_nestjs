@@ -36,7 +36,7 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # dotenv environment variable files
-.env
+
 .env.development.local
 .env.test.local
 .env.production.local
@@ -61,5 +61,6 @@ docker-compose.yml
 # MySQL
 mysql/mysql.sock
 mysql
+.db/*
 
 

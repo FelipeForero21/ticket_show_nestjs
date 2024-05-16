@@ -1,24 +1,23 @@
 import { Module } from '@nestjs/common';
-// import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import { GendersModule } from './genders/genders.module';
-import { UsersDbModule } from './users-db/users-db.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type:'mysql',
-      host: 'localhost',
-      port: 3307,
-      username: 'user_crud',
-      password: 'root',
-      database: 'db_crud',
+      type: 'postgres',
+      host: process.env.DB_HOST,
+      port: +process.env.DB_PORT,
+      username: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
-    }), UsersDbModule, AuthModule],
+    }), UsersModule, AuthModule],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
-// UsersModule, GendersModule,
+export class AppModule { }
