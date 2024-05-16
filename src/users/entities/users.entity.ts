@@ -1,9 +1,8 @@
 import { Column, DeleteDateColumn, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import { Rol } from "./rol.entity"
 
-
 @Entity()
-export class UsersDb {
+export class Users {
     @PrimaryGeneratedColumn()
     id: number;
 

@@ -11,8 +11,8 @@ export class AuthController {
   constructor(private readonly authService: AuthService) { }
 
   @Post('register')
-  @ApiCreatedResponse({description: 'The record has been successfully created'})
-  @ApiForbiddenResponse({description:'Forbidden.'})
+  @ApiCreatedResponse({ description: 'The record has been successfully created' })
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
   async register(@Res() res, @Body() registerDto: RegisterDto) {
     const response = await this.authService.register(registerDto);
     if (!response.success) {
@@ -23,8 +23,8 @@ export class AuthController {
   }
 
   @Post('login')
-  @ApiFoundResponse({description: 'OK'})
-  @ApiUnauthorizedResponse({description: 'Unauthorized'})
+  @ApiFoundResponse({ description: 'OK' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   async login(@Res() res, @Body() loginDto: LoginDto): Promise<any> {
     const response = await this.authService.login(loginDto);
     if (!response.success) {
@@ -33,10 +33,9 @@ export class AuthController {
     return res.status(HttpStatus.OK).send(response)
   }
 
-
   @Get('profile')
-  @ApiOkResponse({description: 'OK'})
-  @ApiBadRequestResponse({description: 'Bad Request'})
+  @ApiOkResponse({ description: 'OK' })
+  @ApiBadRequestResponse({ description: 'Bad Request' })
   @UseGuards(AuthGuard)
   profile(
     @Request()

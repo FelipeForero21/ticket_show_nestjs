@@ -1,22 +1,22 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
-import { UsersDbService } from './users-db.service';
-import { CreateUsersDbDto } from './dto/create-users-db.dto';
-import { UpdateUsersDbDto } from './dto/update-users-db.dto';
+import { UsersService } from './users.service';
+import { CreateUsersDto } from './dto/create-users.dto';
+import { UpdateUsersDto } from './dto/update-users.dto';
 import { RolGuard } from 'src/auth/guard/rol-guard';
 import { ApiBadRequestResponse, ApiBearerAuth, ApiCreatedResponse, ApiForbiddenResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Auth')
 @ApiBearerAuth()
 @Controller('users-db')
-export class UsersDbController {
-  constructor(private readonly usersDbService: UsersDbService) {}
+export class UsersController {
+  constructor(private readonly usersService: UsersService) {}
 
   @Post()
   @ApiCreatedResponse({description: 'The record has been successfully created'})
   @ApiForbiddenResponse({description:'Forbidden.'})
   @UseGuards(RolGuard)
-  create(@Body() createUsersDbDto: CreateUsersDbDto) {
-    return this.usersDbService.create(createUsersDbDto);
+  create(@Body() createUsersDto: CreateUsersDto) {
+    return this.usersService.create(createUsersDto);
   }
 
   @Get()
@@ -24,7 +24,7 @@ export class UsersDbController {
   @ApiNotFoundResponse({description: 'Not Found'})
   @UseGuards(RolGuard)
   findAll() {
-    return this.usersDbService.findAll();
+    return this.usersService.findAll();
   }
 
   @Get(':id')
@@ -32,15 +32,15 @@ export class UsersDbController {
   @ApiNotFoundResponse({description: 'Not Found'})
   @UseGuards(RolGuard)
   findOne(@Param('id') id: string) {
-    return this.usersDbService.findOne(+id);
+    return this.usersService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOkResponse({description: 'OK'})
   @ApiBadRequestResponse({description: 'Bad Request'})
   @UseGuards(RolGuard)
-  update(@Param('id') id: string, @Body() updateUsersDbDto: UpdateUsersDbDto) {
-    return this.usersDbService.update(+id, updateUsersDbDto);
+  update(@Param('id') id: string, @Body() updateUsersDto: UpdateUsersDto) {
+    return this.usersService.update(+id, updateUsersDto);
   }
 
   @Delete(':id')
@@ -48,6 +48,6 @@ export class UsersDbController {
   @ApiBadRequestResponse({description: 'Bad Request'})
   @UseGuards(RolGuard)
   remove(@Param('id') id: string) {
-    return this.usersDbService.remove(+id);
+    return this.usersService.remove(+id);
   }
 }
