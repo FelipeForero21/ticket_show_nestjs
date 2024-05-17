@@ -25,6 +25,7 @@ async function bootstrap() {
         forbidNonWhitelisted: true,
         transform: true,
     }));
+    console.log('ABCD', process.env);
     await app.listen(3000);
 }
 bootstrap();

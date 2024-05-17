@@ -6,7 +6,10 @@ import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath:'.env',
+      isGlobal: true
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,

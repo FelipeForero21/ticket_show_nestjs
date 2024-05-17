@@ -58,16 +58,17 @@ export class AuthService {
 
       const isPasswordValid = await bcryptjs.compare(password, user.password);
       if (!isPasswordValid) {
-        throw new UnauthorizedException('invalid cridentials');
+        return { success: false, message: 'invalid cridentials' }
       }
 
-      const payload = { email: user.email, rol: user.rol.username };
+      const payload = { email: user.email, rol: user.rol.name };
       const token = await this.jwtService.signAsync(payload)
       return {
         success: true,
         message: "user found",
         data: { token, email }
       }
+      
     } catch (error) {
       throw new InternalServerErrorException("service not available")
     }
