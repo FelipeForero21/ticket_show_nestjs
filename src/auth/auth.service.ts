@@ -5,10 +5,10 @@ import {
 } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { RegisterDto } from './dto/register.tdo';
-import * as bcryptjs from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
 import { ResponseDTO } from './dto/response.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -31,7 +31,7 @@ export class AuthService {
       await this.usersService.create({
         username,
         email,
-        password: await bcryptjs.hash(password, 10),
+        password: await bcrypt.hash(password, 10),
         rolId: ROL_USER
       });
 
@@ -56,7 +56,7 @@ export class AuthService {
         return { success: false, message: 'invalid cridentials' }
       }
 
-      const isPasswordValid = await bcryptjs.compare(password, user.password);
+      const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
         return { success: false, message: 'invalid cridentials' }
       }
