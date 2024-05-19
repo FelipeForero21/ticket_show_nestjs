@@ -10,7 +10,7 @@ async function bootstrap() {
     const config = new swagger_1.DocumentBuilder()
         .setTitle('Auth')
         .setDescription('auth services')
-        .setVersion("1.0")
+        .setVersion('1.0')
         .addBearerAuth()
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, config);
@@ -19,7 +19,7 @@ async function bootstrap() {
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     });
     swagger_1.SwaggerModule.setup('api', app, document);
-    app.setGlobalPrefix("api/v1");
+    app.setGlobalPrefix('api/v1');
     app.useGlobalPipes(new common_1.ValidationPipe({
         whitelist: true,
         forbidNonWhitelisted: true,
