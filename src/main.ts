@@ -21,7 +21,7 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   });
 
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api/v1', app, document);
   app.setGlobalPrefix('api/v1');
 
   app.useGlobalPipes(
