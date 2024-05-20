@@ -6,11 +6,11 @@ es una aplicación backend desarrollada en Node.js con el framework Nest.js, dis
 
 Puedes interactuar con la API utilizando la siguiente URL:
 
-[Ir a probar la API](http://localhost:3000/api#/Users/AuthController_profile) -> Para ingresar como admin puedes usar estas credenciales:
+[Ir a probar la API](http://localhost:3000/api/v1#/) -> Para ingresar como admin puedes usar estas credenciales:
 ```json
 {
   "email": "prueba@gmail.com",
-  "password": "12345ri"
+  "password": "12345riw"
 }
 ```
 - **Autenticación de Usuarios**: Gestiona el acceso a través de un sistema robusto de autenticación JWT.
@@ -75,7 +75,7 @@ para que el proceso de register pueda ser exitoso se require ejecutar los siguie
 
 ```
     INSERT into rol (id,name)values (1,'user');
-    INSERT into rol (id,name)values (1,'admin');
+    INSERT into rol (id,name)values (2,'admin');
 ```
 
 
