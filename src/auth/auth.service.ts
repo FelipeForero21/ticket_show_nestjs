@@ -11,7 +11,7 @@ export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   async register({ username, email, password }: RegisterDto) {
     try {
@@ -56,7 +56,11 @@ export class AuthService {
         return { success: false, message: 'invalid cridentials' };
       }
 
-      const payload = { email: user.email, rol: user.rol.name };
+      const payload = {
+        username: user.username,
+        email: user.email,
+        rol: user.rol.name
+      };
       const token = await this.jwtService.signAsync(payload);
       return {
         success: true,
